@@ -1,15 +1,25 @@
-  # C++ Toolchain
+# C++ Toolchain
 
-  - State: scaffold-only next-20 prep
-  - Toolchain source: `built-in`
+- State: deterministic-first local validation complete
+- Toolchain source: `built-in`
 
-  ## Planned commands after promotion
-    - `clang++ --version`
+## Native commands
+- `clang++ --version`
 - `c++ --version`
+- `python3 scripts/validate_scaffold.py`
+- `make compiler-proof`
+- `make test`
+- `./build/cpp-stakeholder --list-values`
+- `./build/cpp-stakeholder --output-format json --focus-family code_analyzer --seed 123`
 
-  ## Scaffold-time checks
-  - `python3 scripts/validate_scaffold.py`
-  - `/nix/var/nix/profiles/default/bin/nix --extra-experimental-features 'nix-command flakes' flake lock`
+## Docker commands
+- `docker build -t cpp-stakeholder .`
+- `docker run --rm cpp-stakeholder --list-values`
+- `docker run --rm cpp-stakeholder --output-format json --focus-family platform_engineering --seed 123`
 
-  ## Current limitation
-  - Apple clang++ is the canonical host compiler.
+## Nix
+- `/nix/var/nix/profiles/default/bin/nix --extra-experimental-features 'nix-command flakes' flake lock`
+- `/nix/var/nix/profiles/default/bin/nix --extra-experimental-features 'nix-command flakes' flake show`
+
+## Current limitation
+- Full live-provider/runtime support is deferred. The deterministic runtime fails fast for provider flags.

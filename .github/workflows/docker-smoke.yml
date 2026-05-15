@@ -2,6 +2,7 @@ name: docker-smoke
 
 on:
   push:
+    branches: [main]
   pull_request:
 
 jobs:
@@ -9,5 +10,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: docker build -t cpp-stakeholder .
-      - run: docker run --rm cpp-stakeholder
+      - name: Build image
+        run: docker build -t cpp-stakeholder .
+      - name: Registry smoke
+        run: docker run --rm cpp-stakeholder --list-values
+      - name: JSON smoke
+        run: docker run --rm cpp-stakeholder --output-format json --focus-family code_analyzer --seed 123
+      - name: Modern-core smoke
+        run: docker run --rm cpp-stakeholder --output-format json --focus-family platform_engineering --seed 456
+      - name: Experimental provider fail-fast
+        run: |
+          if docker run --rm cpp-stakeholder --experimental-provider local-demo; then
+            echo "expected fail-fast"
+            exit 1
+          fi

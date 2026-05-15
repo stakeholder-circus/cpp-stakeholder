@@ -1,3 +1,11 @@
+# C++ local build artifacts
+build/
+*.o
+*.dSYM/
+
+# Legacy scaffold build artifacts
+target/
+
 # Created by https://www.toptal.com/developers/gitignore/api/rust,macos,linux,windows,visualstudiocode,jetbrains,vim,emacs,direnv
 # Edit at https://www.toptal.com/developers/gitignore?templates=rust,macos,linux,windows,visualstudiocode,jetbrains,vim,emacs,direnv
 

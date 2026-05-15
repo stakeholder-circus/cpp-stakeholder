@@ -1,5 +1,5 @@
 {
-  description = "cpp-stakeholder scaffold";
+  description = "cpp-stakeholder deterministic first tranche";
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
   outputs = { self, nixpkgs }:
     let
@@ -11,9 +11,10 @@
         in {
           check = pkgs.writeShellApplication {
             name = "check";
-            runtimeInputs = [ pkgs.python3 ];
+            runtimeInputs = [ pkgs.bash pkgs.gnumake pkgs.gcc pkgs.python3 ];
             text = ''
               python3 scripts/validate_scaffold.py
+              make test
             '';
           };
           default = self.packages.${system}.check;

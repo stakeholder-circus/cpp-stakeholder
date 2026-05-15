@@ -1,9 +1,6 @@
 # C++ Gaps
 
-- `cpp-stakeholder.foundation-pending`: deterministic scaffold-only baseline exists, but runtime foundation has not started.
-- `cpp-stakeholder.classic-six-pending`: the six dedicated baseline families are not implemented yet.
-- `cpp-stakeholder.modern-core-pending`: the modern-core families are not implemented yet.
-- `cpp-stakeholder.post-modern-core-pending`: later families remain grouped fallback work.
-- `cpp-stakeholder.traceability-rows-pending`: first-push traceability rows are not populated yet.
-- `cpp-stakeholder.codeql-activation-pending`: enable only if the language is supported after publication.
-- `cpp-stakeholder.flake-lock-pending`: generate `flake.lock` once the scaffold baseline is stable.
+- `cpp-stakeholder.live-provider-deferred`: full live-provider/runtime support is required eventually, but deferred to the second-pass provider rollout wave. Current behavior fails fast for `--experimental-provider`.
+- `cpp-stakeholder.post-modern-core-grouped`: later families are present as explicit grouped fallback renderers, not dedicated per-family implementations in this deterministic-first tranche.
+- `cpp-stakeholder.publication-held`: remote publication and upstream tracking remain blocked until governance and access are ready.
+- `cpp-stakeholder.codeql-deferred`: C/C++ CodeQL can be enabled after publication when remote CI contexts are stable.

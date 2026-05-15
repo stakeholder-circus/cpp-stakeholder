@@ -1,4 +1,12 @@
+FROM alpine:3.20 AS build
+RUN apk add --no-cache bash g++ make
+WORKDIR /app
+COPY Makefile ./
+COPY src ./src
+COPY tests ./tests
+RUN make test
+
 FROM alpine:3.20
-LABEL org.opencontainers.image.title="cpp-stakeholder"
-LABEL org.opencontainers.image.description="Scaffold-only placeholder container for cpp-stakeholder"
-CMD ["sh", "-lc", "echo 'cpp-stakeholder scaffold-only baseline';"]
+RUN apk add --no-cache libstdc++
+COPY --from=build /app/build/cpp-stakeholder /usr/local/bin/cpp-stakeholder
+ENTRYPOINT ["cpp-stakeholder"]
